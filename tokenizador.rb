@@ -25,6 +25,6 @@ module Tokenizador
     #d+ pega um ou mais dos numeros juntos, | (ou) o operador ou parenteses individual
     tokens = entrada.scan(/\d+|[+\-*\/\^()]/)
     tokens
-
+  end 
 
 end
