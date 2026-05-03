@@ -26,5 +26,12 @@ class Gramatica
     @regras = regras
     @simbolo_inicial = simbolo_inicial
   end
-end
+  
+  def adiciona_regra(regra)
+    @regras << regra
+  end
 
+  def to_s
+    @regras.map(&:to_s).join("\n")
+  end
+end

@@ -6,6 +6,19 @@
 # da gramática: dígitos, operadores e parênteses.
 # =====================================================================
 
+class Token
+  attr_reader :type, :value
+
+  def initialize(type, value)
+    @type = type
+    @value = value
+  end
+
+  def to_s
+    "#{type}(#{value})"
+  end
+end
+
 module Tokenizador
   def self.preparar(expressao)
     entrada = expressao.gsub(' ', '')
@@ -20,11 +33,17 @@ module Tokenizador
   end
 
   def self.tokenizar_cyk(expressao)
-    entrada = preparar(expressao)
+    entrada = expressao.gsub(/\s+/, '')
     
-    #d+ pega um ou mais dos numeros juntos, | (ou) o operador ou parenteses individual
-    tokens = entrada.scan(/\d+|[+\-*\/\^()]/)
-    tokens
-  end 
-
+    # \d+ pega um ou mais números juntos. O resto pega operadores.
+    tokens_str = entrada.scan(/\d+|[+\-*\/\^()]/)
+    
+    tokens_str.map do |t|
+      if t.match?(/^\d+$/)
+        Token.new(:NUMBER, t.to_i)
+      else
+        Token.new(:OP, t) # Operadores e Parênteses
+      end
+    end
+  end
 end
