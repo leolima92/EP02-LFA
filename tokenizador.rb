@@ -18,4 +18,13 @@ module Tokenizador
 
     entrada
   end
+
+  def self.tokenizar_cyk(expressao)
+    entrada = preparar(expressao)
+    
+    #d+ pega um ou mais dos numeros juntos, | (ou) o operador ou parenteses individual
+    tokens = entrada.scan(/\d+|[+\-*\/\^()]/)
+    tokens
+
+
 end

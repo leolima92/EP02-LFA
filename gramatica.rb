@@ -27,3 +27,4 @@ class Gramatica
     @simbolo_inicial = simbolo_inicial
   end
 end
+
